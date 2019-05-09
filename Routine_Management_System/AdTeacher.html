@@ -1,0 +1,51 @@
+<html>
+	<head>
+		
+	</head>
+	
+	<body>
+	
+		
+		<?php
+
+		$con = mysql_connect("localhost","root","");
+		if(!$con)
+		{
+			die("Connection Failed:". mysql_error());
+		}
+		mysql_select_db("routine",$con);
+		$sql = "Select * from teacher";
+		$myData = mysql_query($sql,$con);
+		
+		
+		
+		echo "<table border=1>
+		<tr>
+		<th>Name<th>
+		<th>Short_Name<th>
+		<th>Dept<th>
+		<th>Desgination<th>
+		<th>Contact_no<th>
+		<th>Email<th>
+		<th>Credit<th>
+		</tr>";
+		
+		while($record = mysql_fetch_array($myData))
+		{
+			echo "<tr>";
+			echo "<td>" . $record['Name'] . "</td>";
+			echo "<td>" . $record['Short_name'] . "</td>";
+			echo "<td>" . $record['Dept'] . "</td>";
+			echo "<td>" . $record['Designation'] . "</td>";
+			echo "<td>" . $record['Contact_No'] . "</td>";
+			echo "<td>" . $record['Email'] . "</td>";
+			echo "<td>" . $record['Credit'] . "</td>";
+			echo "</tr>";
+		}
+		
+		echo "</table>";
+
+	mysql_close($con);		
+	?>
+	</body>
+</html>
